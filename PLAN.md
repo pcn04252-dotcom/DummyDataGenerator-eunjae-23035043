@@ -28,10 +28,10 @@ tests/
 
 ## 5. 구현 단계
 
-- [ ] 1단계 - `db.py`: SQLite 연결 함수, 테이블 없을 시 자동 생성.
-- [ ] 2단계 - `generator.py`: 랜덤 이름/수량을 가진 Item 더미 데이터 N개 생성하는 순수 함수 (DB 접근과 분리, 테스트 용이성 확보).
-- [ ] 3단계 - `main.py`: `argparse`로 `--count` 인자를 받아 생성된 더미 데이터를 DB에 삽입, 삽입 건수 요약 출력.
-- [ ] 4단계 - `tests/test_generator.py`: 생성 함수의 개수/필드 유효성 단위 테스트 (DB 접근 없이 순수 로직만 검증).
+- [x] 1단계 - `db.py`: SQLite 연결 함수, 테이블 없을 시 자동 생성. `insert_items`(executemany 기반 일괄 삽입) 포함.
+- [x] 2단계 - `generator.py`: 랜덤 이름/수량을 가진 Item 더미 데이터 N개 생성하는 순수 함수. `rng: random.Random` 파라미터로 주입받아 테스트에서 시드 고정 가능.
+- [x] 3단계 - `main.py`: `argparse`로 `--count` 인자를 받아 생성된 더미 데이터를 DB에 삽입, 삽입 건수 요약 출력.
+- [x] 4단계 - `tests/test_generator.py`: 생성 함수의 개수/필드 유효성/재현성/경계값(0, 음수) 단위 테스트. 5개 테스트 통과.
 
 ## 6. 완료 기준 (Definition of Done)
 
@@ -43,3 +43,9 @@ tests/
 ## 7. 미결정/추후 논의 사항
 
 - (없음, 발견 시 추가)
+
+## 8. 변경 이력
+
+- 최초 작성
+- `generate_items`에 `rng` 파라미터를 추가해 테스트에서 `random.Random(seed)`로 재현성 확보
+- CLI 실행(5건 + 3건) 및 최종 DB 조회로 누적 삽입 동작 수동 검증 완료 (덮어쓰지 않음 확인)
