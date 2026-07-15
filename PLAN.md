@@ -49,3 +49,4 @@ tests/
 - 최초 작성
 - `generate_items`에 `rng` 파라미터를 추가해 테스트에서 `random.Random(seed)`로 재현성 확보
 - CLI 실행(5건 + 3건) 및 최종 DB 조회로 누적 삽입 동작 수동 검증 완료 (덮어쓰지 않음 확인)
+- Harness 도입: `pyproject.toml`(pytest/ruff 설정), `requirements-dev.txt`(pytest, ruff), GitHub Actions CI(`.github/workflows/ci.yml`) 추가. `ruff check` 결과 자동 수정 가능한 사소한 스타일(구식 `Optional[X]` 표기) 1건만 발견되어 `X | None`으로 수정.
