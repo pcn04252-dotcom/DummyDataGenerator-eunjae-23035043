@@ -43,3 +43,4 @@ pytest
 
 - 스키마는 `DataPersistence` repo와 동일한 설계 방향(Item: id/name/quantity)을 따르되, 코드/DB 파일을 직접 공유하지는 않는다.
 - 실행할 때마다 기존 데이터에 누적 삽입되며, 삭제/초기화 기능은 이 PoC의 범위가 아니다.
+- `main.py`에서 Windows 콘솔 기본 코드페이지(cp949) 한글 깨짐 방지를 위해 `sys.stdout.reconfigure(encoding="utf-8")` / `sys.stdin.reconfigure(encoding="utf-8")`를 적용한다 (`ConsoleMVC` PoC에서 확인된 이슈).
