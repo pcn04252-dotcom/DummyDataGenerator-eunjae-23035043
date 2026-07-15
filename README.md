@@ -19,6 +19,7 @@ python -m src.main --count 50
 ```
 pip install -r requirements-dev.txt
 pytest
+ruff check .
 ```
 
 ## 검증한 것

@@ -15,7 +15,12 @@ def main(argv=None) -> None:
     sys.stdout.reconfigure(encoding="utf-8")
 
     args = parse_args(argv)
-    items = generate_items(args.count)
+    try:
+        items = generate_items(args.count)
+    except ValueError as exc:
+        print(f"오류: {exc}")
+        return
+
     with get_connection() as conn:
         inserted = insert_items(conn, items)
 

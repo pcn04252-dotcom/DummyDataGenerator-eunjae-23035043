@@ -50,3 +50,4 @@ tests/
 - `generate_items`에 `rng` 파라미터를 추가해 테스트에서 `random.Random(seed)`로 재현성 확보
 - CLI 실행(5건 + 3건) 및 최종 DB 조회로 누적 삽입 동작 수동 검증 완료 (덮어쓰지 않음 확인)
 - Harness 도입: `pyproject.toml`(pytest/ruff 설정), `requirements-dev.txt`(pytest, ruff), GitHub Actions CI(`.github/workflows/ci.yml`) 추가. `ruff check` 결과 자동 수정 가능한 사소한 스타일(구식 `Optional[X]` 표기) 1건만 발견되어 `X | None`으로 수정.
+- **최종 코드 리뷰 후 수정**: 독립 에이전트 리뷰에서 `--count`에 음수를 입력하면 처리되지 않은 `ValueError` traceback으로 크래시하는 문제를 발견 → `main()`에서 캐치해 사용자 친화적 오류 메시지 출력 후 정상 종료(`test_main.py` 테스트 2건 추가, 5개→7개). CLAUDE.md가 `main.py`에 불필요한 `stdin.reconfigure`까지 적용한다고 서술한 과장된 문구 정정. README에 누락된 `ruff check .` 안내 추가, `ci.yml`의 중복 `pip install ruff` 라인 제거.
